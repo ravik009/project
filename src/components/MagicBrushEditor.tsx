@@ -60,7 +60,7 @@ export const MagicBrushEditor: React.FC<MagicBrushEditorProps> = ({
   const [isBrushPreviewVisible, setIsBrushPreviewVisible] = useState(false);
   const [brushPosition, setBrushPosition] = useState({ x: 0, y: 0 });
 
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+  const [backgroundColor, setBackgroundColor] = useState('');
   const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
   const [outlineColor, setOutlineColor] = useState('#000000');
   const [outlineWidth, setOutlineWidth] = useState(0);
@@ -81,7 +81,7 @@ export const MagicBrushEditor: React.FC<MagicBrushEditorProps> = ({
   const maskCanvas = useRef(document.createElement('canvas'));
   const finalImageCanvas = useRef(document.createElement('canvas'));
 
-  const [isTransparent, setIsTransparent] = useState(false);
+  const [isTransparent, setIsTransparent] = useState(true);
 
   const overlayCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -425,21 +425,6 @@ export const MagicBrushEditor: React.FC<MagicBrushEditorProps> = ({
           boxShadow: '0 8px 32px 0 rgba(99,102,241,0.15), 0 1.5px 8px 0 rgba(236,72,153,0.10)'
         }}
       >
-        {/* Brush Mode Selector with Glow */}
-        <div className="flex gap-4 mb-6 items-center justify-center">
-          <button
-            onClick={() => setBrushMode('restore')}
-            className={`px-6 py-2 rounded-full font-bold transition-all duration-300 shadow-md ${brushMode === 'restore' ? 'bg-gradient-to-r from-blue-400 to-purple-500 text-white shadow-xl ring-2 ring-purple-300' : 'bg-gray-100 text-gray-700 hover:bg-blue-100'}`}
-          >
-            Restore
-          </button>
-          <button
-            onClick={() => setBrushMode('erase')}
-            className={`px-6 py-2 rounded-full font-bold transition-all duration-300 shadow-md ${brushMode === 'erase' ? 'bg-gradient-to-r from-pink-400 to-orange-400 text-white shadow-xl ring-2 ring-pink-200' : 'bg-gray-100 text-gray-700 hover:bg-pink-100'}`}
-          >
-            Erase
-          </button>
-        </div>
         {/* Main editor and tool panel side by side */}
         <div className="flex flex-row w-full gap-12">
           {/* Editor Canvas Area */}
