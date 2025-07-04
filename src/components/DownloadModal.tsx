@@ -70,7 +70,13 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div
+        className="relative bg-white rounded-3xl shadow-2xl p-8 max-w-6xl w-full flex flex-col items-center border-4 border-transparent bg-clip-padding"
+        style={{
+          borderImage: 'linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6) 1',
+          boxShadow: '0 8px 32px 0 rgba(99,102,241,0.15), 0 1.5px 8px 0 rgba(236,72,153,0.10)'
+        }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
@@ -98,7 +104,8 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({
               <img
                 src={image}
                 alt="Preview"
-                className="w-32 h-32 object-contain rounded-xl border-2 border-gray-200"
+                className="w-auto h-auto max-w-192 max-h-192 object-contain rounded-2xl border-4 border-gray-200 mx-auto"
+                style={{ width: '100%', maxWidth: '768px', maxHeight: '768px' }}
               />
               <div className="absolute -top-2 -right-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-2 py-1 rounded-full font-medium">
                 HD

@@ -32,17 +32,25 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
         ref={fileInputRef}
         type="file"
         accept="image/jpeg,image/jpg,image/png,image/webp"
+        multiple
         onChange={onFileSelect}
         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
       />
       
       <div className="flex flex-col items-center">
         <div className={`relative mb-8 transition-all duration-500 ${dragActive ? 'scale-110' : ''}`}>
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-2xl shadow-2xl">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-2xl shadow-2xl focus:outline-none"
+            style={{ cursor: 'pointer' }}
+            tabIndex={0}
+            aria-label="Upload image"
+          >
             <Upload className="w-10 h-10 text-white" />
-          </div>
+          </button>
           {dragActive && (
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 p-6 rounded-2xl animate-pulse">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 p-6 rounded-2xl animate-pulse pointer-events-none">
               <Upload className="w-10 h-10 text-white" />
             </div>
           )}

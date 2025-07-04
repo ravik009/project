@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Move } from 'lucide-react';
+import './shimmer.css';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -71,16 +72,17 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         <div className="relative w-full h-full">
           {/* Checkered background for transparency */}
           <div 
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0"
             style={{
               backgroundImage: `
-                linear-gradient(45deg, #ccc 25%, transparent 25%),
-                linear-gradient(-45deg, #ccc 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, #ccc 75%),
-                linear-gradient(-45deg, transparent 75%, #ccc 75%)
+                linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+                linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+                linear-gradient(-45deg, transparent 75%, #e0e0e0 75%)
               `,
               backgroundSize: '20px 20px',
-              backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
+              backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
+              opacity: 1
             }}
           />
           <img
@@ -88,6 +90,7 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
             alt="Background Removed"
             className="w-full h-full object-contain relative z-10"
             draggable={false}
+            style={{ position: 'relative' }}
           />
         </div>
         <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -102,8 +105,10 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       >
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-lg border-2 border-gray-200">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-lg border-2 border-gray-200 flex items-center justify-center">
           <Move className="w-4 h-4 text-gray-600" />
+          {/* Shimmer effect */}
+          <span className="magic-shimmer" />
         </div>
       </div>
 
